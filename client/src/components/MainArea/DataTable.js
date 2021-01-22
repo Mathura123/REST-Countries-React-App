@@ -24,9 +24,10 @@ const columns = [
 const useStyles = makeStyles({
   root: {
     width: '100%',
+    marginTop : "30px"
   },
   container: {
-    maxHeight: 440,
+    maxHeight: 540,
   },
 });
 
