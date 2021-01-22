@@ -7,5 +7,5 @@
 * Material UI
 * Axios
 
-![](client/public/AppSS1.png)
-![](client/public/AppSS2.png)
+![](screentshot/AppSS1.png)
+![](screentshot/AppSS2.png)
