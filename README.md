@@ -7,8 +7,5 @@
 * Material UI
 * Axios
 
-![](images/SignUp.png)
-![](images/Game.png)
-![](images/GameLose.png)
-![](images/Rules.png)
-![](images/creators.png)
+![](client/public/AppSS1.png)
+![](client/public/AppSS2.png)
