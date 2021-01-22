@@ -1,23 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import { Header } from "./components/Header/Header";
+import {  MainContent } from "./components/MainArea/MainContent";
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { storeCountryDetails } from "./redux";
+import useStyles from "./style";
 
 function App() {
+  const dispatch = useDispatch();
+  const classes = useStyles();
+
+  useEffect(() => {
+    dispatch(storeCountryDetails());
+}, [dispatch])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={classes.page}>
+      <Header className={classes.mainItem}/>
+      <MainContent/>
     </div>
   );
 }
