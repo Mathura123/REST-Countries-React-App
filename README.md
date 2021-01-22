@@ -7,5 +7,5 @@
 * Material UI
 * Axios
 
-![](screentshot/AppSS1.png)
-![](screentshot/AppSS2.png)
+![alt text](screentshot/AppSS1.png)
+![alt text](screentshot/AppSS2.png)
