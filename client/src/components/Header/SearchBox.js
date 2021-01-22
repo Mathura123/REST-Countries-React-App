@@ -6,7 +6,6 @@ import { useDispatch } from 'react-redux';
 import { doSearch } from "../../redux";
 
 export const SearchBox = (props) => {
-    const { numSelected } = props;
     const classes= useStyles();
     const dispatch = useDispatch();
 

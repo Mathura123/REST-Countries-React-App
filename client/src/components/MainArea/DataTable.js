@@ -1,14 +1,7 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TablePagination from '@material-ui/core/TablePagination';
-import TableRow from '@material-ui/core/TableRow';
+import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow } from '@material-ui/core';
 import { useSelector } from 'react-redux';
+import useStyles from "./style";
 
 const columns = [
   { id: 'flag', label: 'Flag' },
@@ -16,27 +9,15 @@ const columns = [
   { id: 'capital', label: 'Capital' },
   { id: 'region', label: 'Region' },
   { id: 'subregion', label: 'Sub Region' },
-  // { id: 'code', label: 'ISO\u00a0Code' },
   { id: 'population', label: 'Population', align: 'right', format: (value) => value.toLocaleString('en-US')},
   { id: 'area', label: 'Size\u00a0(km\u00b2)', align: 'right', format: (value) => value.toLocaleString('en-US'),},
 ];
-
-const useStyles = makeStyles({
-  root: {
-    width: '100%',
-    marginTop : "30px"
-  },
-  container: {
-    maxHeight: 540,
-  },
-});
 
 export default function StickyHeadTable(props) {
   const classes = useStyles();
   const searchText = useSelector((state)=>state.search.searchString);
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
-  // const [sortedRow, setSortedRow] = React.useState(props.rows);
   let sortedRow = props.rows;
   const initial = searchText !== "" ? 0 : page * rowsPerPage ; 
   const last = searchText !== "" ? -1 : page * rowsPerPage + rowsPerPage ;
@@ -47,24 +28,14 @@ export default function StickyHeadTable(props) {
 
   let compareFunc;
   let sortingColumn;
-  if(columnIndexSort === '1'){
-    sortingColumn='name'
-  }
-  else if(columnIndexSort === '2'){
-    sortingColumn='capital'
-  }
-  else if(columnIndexSort === '3'){
-    sortingColumn='region'
-  }
-  else if(columnIndexSort === '4'){
-    sortingColumn='subregion'
-  }
-  else if(columnIndexSort === '5'){
-    sortingColumn='population'
-  }
-  else if(columnIndexSort === '6'){
-    sortingColumn='area'
-  }
+  sortingColumn = columnIndexSort === '1' ? 
+                  'name' : columnIndexSort === '2' ? 
+                  'capital' : columnIndexSort === '3' ? 
+                  'region' : columnIndexSort === '4' ? 
+                  'subregion' : columnIndexSort === '5' ? 
+                  'population' : columnIndexSort === '6' ? 
+                  'area' : null;
+
   if(sortType==='A'){
     compareFunc= (a,b)=>{
       if ((a[sortingColumn])> (b[sortingColumn])) return 1;
@@ -81,17 +52,6 @@ export default function StickyHeadTable(props) {
   }
   
   sortedRow.sort(compareFunc)
-  function compareAscending(a, b) {
-    console.log(a.sortingColumn-b.sortingColumn);
-    
-  }
-  function compareDescending(a, b) {
-    console.log(a.sortingColumn-b.sortingColumn);
-    if (((a.sortingColumn)- (b.sortingColumn))>0) return 1;
-    if (((a.sortingColumn)- (b.sortingColumn))<0) return -1;
-  
-    return 0;
-  }
   
   const handleChangePage = (event, newPage) => {
     setPage(newPage);

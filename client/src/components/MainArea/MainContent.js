@@ -20,10 +20,9 @@ export const MainContent= () => {
 
   return (
       !countries.length ? <CircularProgress/>:(
-    <Grid container alignItems="stretch" spacing={3}>
-      <DataTable rows={rows}/>
-    </Grid>
-
+      <Grid container alignItems="stretch" spacing={3}>
+        <DataTable rows={rows}/>
+      </Grid>
       )
   );
 };

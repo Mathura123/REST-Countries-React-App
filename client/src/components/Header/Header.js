@@ -3,7 +3,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { SearchBox } from './SearchBox';
-import { ColumnSelector } from './SortBox'; 
+import { SortBox } from './SortBox'; 
 import useStyles from "./style";
 
 export function Header() {
@@ -17,7 +17,7 @@ export function Header() {
             Countries React App
           </Typography>
           <SearchBox/>
-          <ColumnSelector/>
+          <SortBox/>
         </Toolbar>
       </AppBar>
     </div>
