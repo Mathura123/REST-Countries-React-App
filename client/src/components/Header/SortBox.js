@@ -40,14 +40,20 @@ export function ColumnSelector() {
           displayEmpty
           className={classes.selectEmpty}
         >
-          <MenuItem value='1_S'>
-            <em>Name</em>
+          <MenuItem value='1_A'>
+            <em>Name Ascending</em>
           </MenuItem>
-          <MenuItem value='2_S'>Capital</MenuItem>
-          <MenuItem value='3_S'>Region</MenuItem>
-          <MenuItem value='4_S'>Sub Region</MenuItem>
-          <MenuItem value='5_N'>Population</MenuItem>
-          <MenuItem value='6_N'>Size</MenuItem>
+          <MenuItem value='1_D'>Name Descending</MenuItem>
+          <MenuItem value='2_A'>Capital Ascending</MenuItem>
+          <MenuItem value='2_D'>Capital Descending</MenuItem>
+          <MenuItem value='3_A'>Region Ascending</MenuItem>
+          <MenuItem value='3_D'>Region Descending</MenuItem>
+          <MenuItem value='4_A'>Sub Region Ascending</MenuItem>
+          <MenuItem value='4_D'>Sub Region Descending</MenuItem>
+          <MenuItem value='5_A'>Population Ascending</MenuItem>
+          <MenuItem value='5_D'>Population Descending</MenuItem>
+          <MenuItem value='6_A'>Size Ascending</MenuItem>
+          <MenuItem value='6_D'>Size Descending</MenuItem>
         </Select>
       </FormControl>
   );

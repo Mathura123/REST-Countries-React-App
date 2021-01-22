@@ -9,7 +9,7 @@ const initialSearchValue = {
 }
 
 const initialSortingType = {
-    sortType: "1_S"
+    sortType: "1_A"
 }
 
 export const countriesReducer = (state=initialCountryDetails, action) => {

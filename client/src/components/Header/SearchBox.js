@@ -12,7 +12,6 @@ export const SearchBox = (props) => {
 
     const handleSearch = (e) => {
         dispatch(doSearch(e.target.value));
-        console.log(e.target.value);
     }
 
     return (

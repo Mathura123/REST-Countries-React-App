@@ -35,8 +35,62 @@ export default function StickyHeadTable(props) {
   const searchText = useSelector((state)=>state.search.searchString);
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  // const [sortedRow, setSortedRow] = React.useState(props.rows);
+  let sortedRow = props.rows;
   const initial = searchText !== "" ? 0 : page * rowsPerPage ; 
   const last = searchText !== "" ? -1 : page * rowsPerPage + rowsPerPage ;
+  const sortingType = useSelector((state)=>state.sortingType.sortType);
+  const sortingDetail = sortingType.split('_');
+  const columnIndexSort = sortingDetail[0];
+  const sortType = sortingDetail[1];
+
+  let compareFunc;
+  let sortingColumn;
+  if(columnIndexSort === '1'){
+    sortingColumn='name'
+  }
+  else if(columnIndexSort === '2'){
+    sortingColumn='capital'
+  }
+  else if(columnIndexSort === '3'){
+    sortingColumn='region'
+  }
+  else if(columnIndexSort === '4'){
+    sortingColumn='subregion'
+  }
+  else if(columnIndexSort === '5'){
+    sortingColumn='population'
+  }
+  else if(columnIndexSort === '6'){
+    sortingColumn='area'
+  }
+  if(sortType==='A'){
+    compareFunc= (a,b)=>{
+      if ((a[sortingColumn])> (b[sortingColumn])) return 1;
+      if ((a[sortingColumn])< (b[sortingColumn])) return -1;
+    return 0;
+    } 
+  }
+  else if(sortType==='D'){
+    compareFunc= (a,b)=>{
+      if ((a[sortingColumn])< (b[sortingColumn])) return 1;
+      if ((a[sortingColumn])> (b[sortingColumn])) return -1;
+    return 0;
+    } 
+  }
+  
+  sortedRow.sort(compareFunc)
+  function compareAscending(a, b) {
+    console.log(a.sortingColumn-b.sortingColumn);
+    
+  }
+  function compareDescending(a, b) {
+    console.log(a.sortingColumn-b.sortingColumn);
+    if (((a.sortingColumn)- (b.sortingColumn))>0) return 1;
+    if (((a.sortingColumn)- (b.sortingColumn))<0) return -1;
+  
+    return 0;
+  }
   
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -65,7 +119,7 @@ export default function StickyHeadTable(props) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {props.rows.slice(initial, last).map((row) => {
+            {sortedRow.slice(initial, last).map((row) => {
               return (
                 <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
                   {columns.map((column) => {
@@ -92,7 +146,7 @@ export default function StickyHeadTable(props) {
       <TablePagination
         rowsPerPageOptions={[10, 25, 100]}
         component="div"
-        count={props.rows.length}
+        count={sortedRow.length}
         rowsPerPage={rowsPerPage}
         page={page}
         onChangePage={handleChangePage}
